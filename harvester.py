@@ -2,13 +2,17 @@ from data.mongoPersistence import MongoPersistence
 from logger import Logger
 from notify import Notify
 from scraper.scraper import Scraper
+from os import path
+
+# base dir path
+baseDir = '/home/peter/programming/crawler'
 
 # create logger
-logger = Logger()
+logger = Logger(baseDir)
 
 # scrape data
 logger.log('Scraping started')
-s = Scraper('/home/peter/programming/crawler/settings.json')
+s = Scraper(path.join(baseDir, 'settings.json'))
 data = s.scrape()
 
 # save data

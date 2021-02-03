@@ -1,9 +1,9 @@
 import datetime
-import os
+from os import path
 
 class Logger:
-	def __init__(self):
-		self.__filename = "/home/peter/programming/crawler/log/crawlerlog-{0}.log".format(datetime.datetime.now().strftime("%d%m%y"))
+	def __init__(self, baseDir):
+		self.__filename = path.join(baseDir, "log/crawlerlog-{0}.log".format(datetime.datetime.now().strftime("%d%m%y")))
 
 	def log(self, data):
 		with open(self.__filename, 'a') as file:
