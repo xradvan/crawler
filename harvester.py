@@ -1,4 +1,4 @@
-from data.mongoPersistence import MongoPersistence
+from data.firestorePersistence import FirestorePersistence
 from logger import Logger
 from notify import Notify
 from scraper.scraper import Scraper
@@ -16,12 +16,6 @@ s = Scraper(path.join(baseDir, 'settings.json'))
 data = s.scrape()
 
 # save data
-logger.log('Saving flats to DB')
-persistence = MongoPersistence()
+persistence = FirestorePersistence(baseDir)
 added = persistence.saveNew(data)
-logger.log('New flats saved: {0}'.format(added))
-
-# notify, if any new founds
-if added > 0:
-	logger.log('Anouncing {0} new flats'.format(added))
-	Notify.anounce('New flats: {0}'.format(added))
+logger.log('Scraping finished')

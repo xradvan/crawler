@@ -1,5 +1,4 @@
 from .post import Post
-import datetime
 
 class FlatFactory:
 	@staticmethod
@@ -40,7 +39,5 @@ class FlatFactory:
 		rooms = post.getRooms()
 		if len(rooms) > 0:
 			flat.update({'rooms': int(rooms)})
-
-		flat.update({'timestamp': datetime.datetime.now()})
 
 		return flat
