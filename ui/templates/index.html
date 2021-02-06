@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Crawler UI{% endblock %}
+
+{% block content %}
+<div class="container">
+	<!-- title -->
+	<div class="row my-3">
+		<h2>Crawler UI</h2>
+	</div>
+
+	<!-- statistics -->
+	<div class="row">
+		<div class="lg-col-3">
+			<div class="shadow-sm p-3 mb-5 bg-white border">
+				<h3><i class="bi bi-cash pr-3 text-success"></i>{{pps | round(2, 'floor')}} €/m<sup>2</sup></h3>
+				<small>Priemerná cena za m<sup>2</sup></small>
+			</div>
+		</div>
+		<div class="lg-col-3 px-3">
+			<div class="shadow-sm p-3 mb-5 bg-white border">
+				<h3><i class="bi bi-arrows-move pr-3 text-info"></i>{{area | round(2, 'floor')}} m<sup>2</sup></h3>
+				<small>Priemerná rozloha bytu</small>
+			</div>
+		</div>
+		<div class="lg-col-3 px-3">
+			<div class="shadow-sm p-3 mb-5 bg-white border">
+				<h3><i class="bi bi-door-open-fill pr-3 text-warning"></i>{{rooms | round(2, 'floor')}}</h3>
+				<small>Priemerný počet izieb</small>
+			</div>
+		</div>
+		<div class="lg-col-3 px-3">
+			<div class="shadow-sm p-3 mb-5 bg-white border">
+				<h3><i class="bi bi-building pr-3 text-danger"></i>{{count}}</h3>
+				<small>Celkový počet nájdených bytov</small>
+			</div>
+		</div>
+	</div>
+
+	<!-- flats found -->
+	<div class="row shadow-sm p-3 mb-5 bg-white border">
+		<h5 class="my-2">Zoznam nájdených bytov</h5>
+		<table class="table my-2">
+			<thead>
+				<tr>
+				<th scope="col">Plocha</th>
+				<th scope="col">Cena</th>
+				<th scope="col">Lokalita</th>
+				<th scope="col">Cena za m<sup>2</sup></th>
+				<th scope="col">Link</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				{% for flat in flats %}
+					<tr>
+						<td>{{ flat["area"]}}</td>
+						<td>{{ '{0:,}'.format(flat["price"] | int) }}</td>
+						<td>{{ flat["location"]}}</td>
+						<td>{{ flat["pps"] | round(2, 'floor')}}</td>
+						<td><a href="{{ flat['url']}}">{{ flat['url']}}</a></td>
+					</tr>
+				{% endfor %}
+				</tr>
+			</tbody>
+			</table>
+	</div>
+</div>
+
+{% endblock %}
