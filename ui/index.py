@@ -1,12 +1,13 @@
 from flask import Flask, render_template
 from indexView import IndexView
 from firestoreModel import FirestoreModel
+from os import environ
 
 # create Flask instance
 app = Flask(__name__)
 
 # model
-baseDir = '/home/peter/programming/crawler'
+baseDir = environ['CRAWLER_HOME']
 model = FirestoreModel(baseDir)
 
 # routing

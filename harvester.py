@@ -3,9 +3,10 @@ from logger import Logger
 from notify import Notify
 from scraper.scraper import Scraper
 from os import path
+from os import environ
 
 # base dir path
-baseDir = '/home/peter/programming/crawler'
+baseDir = environ['CRAWLER_HOME']
 
 # create logger
 logger = Logger(baseDir)
